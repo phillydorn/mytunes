@@ -15,6 +15,8 @@ var SongModel = Backbone.Model.extend({
   },
 
   ended: function(){
+    this.set('playCount', this.get('playCount')+1);
+    console.log(this.get('playCount'));
     this.trigger('ended', this);
   }
 
