@@ -9,6 +9,10 @@ var PlayerView = Backbone.View.extend({
      this.$el.on('ended', (function(){
        this.model.ended();
      }).bind(this));
+     this.model.set('artist', '');
+     this.model.set('title', '');
+     this.render()
+     this.listenTo(this.model, 'play', this.render)
   },
 
   setSong: function(song){
@@ -17,7 +21,12 @@ var PlayerView = Backbone.View.extend({
   },
 
   render: function(){
-    return this.$el.attr('src', this.model ? this.model.get('url') : '');
+    
+
+    return this.$el.empty().attr('src', this.model ? this.model.get('url') : '')
+    .after(($('<p>')).html('Now Playing: ' + this.model.get('artist')+ '    ' + this.model.get('title')))
+      
+      
   }
 
 });
