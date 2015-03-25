@@ -21,9 +21,9 @@ var PlayerView = Backbone.View.extend({
   },
 
   render: function(){
-    
+    this.$el.parent().find('p').remove();
 
-    return this.$el.empty().attr('src', this.model ? this.model.get('url') : '')
+    return this.$el.attr('src', this.model ? this.model.get('url') : '')
     .after(($('<p>')).html('Now Playing: ' + this.model.get('artist')+ '    ' + this.model.get('title')))
       
       
